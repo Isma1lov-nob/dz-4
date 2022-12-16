@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React , {useState} from "react";
+import "./app.css"
+
+
 
 function App() {
+
+  const [state,setState] = useState(0)
+  const [status, setStatus] = useState(0);
+
+  const handleOneChange = (e) =>{
+    setStatus(e.target.value)
+  }
+
+  const handleSet= () => {
+    if (status) setState(state - parseInt(status, 10));
+  };
+
+  const handleAdd = () => {
+    if (status) setState(state + parseInt(status, 10));
+  };
+
+  const handleReset = () => {
+    setState(0);
+    setStatus(0);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="header">
+      <div className="content">
+        <div >
+          <p>{state}</p>
+        </div>
+        <div>
+          <div className="text">
+            <input
+              type="text"
+              value={status}
+              onChange={handleOneChange}  
+            />
+            <button className="btn"
+              onClick={handleSet}
+            >
+              -
+            </button>
+            <button className="btn2" onClick={handleAdd}>
+              +
+            </button>
+          </div>
+        </div>
+        <button className="btn reset" onClick={handleReset}>
+          Reset click
+        </button>
+      </div>
     </div>
   );
+  
 }
 
 export default App;
